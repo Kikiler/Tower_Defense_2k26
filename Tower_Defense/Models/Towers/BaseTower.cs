@@ -9,9 +9,14 @@ public class BaseTower : Tower
 {
     private Entity? _target;
 
-    public BaseTower(Position pos, int value, int range, int attackDamage) : base(pos, value, range, attackDamage)
+    public override int HpBar { get; set; } = 100;
+    public override int Range { get; } = 5;
+    public int RawAttackDamage { get; }
+
+    public BaseTower(Position pos, int value, int attackDamage) : base(pos, value)
     {
         _target = null;
+        RawAttackDamage = attackDamage;
     }
 
     public override void Attack()
@@ -20,6 +25,11 @@ public class BaseTower : Tower
         {
             t.TakeDamage(RawAttackDamage);
         }
+    }
+
+    public override void TakeDamage(int damage)
+    {
+        HpBar -= damage;
     }
 
     public override void TargetAmong(List<Entity> entities)
@@ -32,8 +42,8 @@ public class BaseTower : Tower
         Entity? currentPotentialTarget = entities[0];
         foreach (var potentialTarget in entities)
         {
-            if (IsInRange(potentialTarget) && potentialTarget.Position.Distance(Position)
-                < currentPotentialTarget.Position.Distance(Position))
+            if (IsInRange(potentialTarget) && potentialTarget.GetPosition().Distance(Position)
+                < currentPotentialTarget.GetPosition().Distance(Position))
             {
                 currentPotentialTarget = potentialTarget;
             }
