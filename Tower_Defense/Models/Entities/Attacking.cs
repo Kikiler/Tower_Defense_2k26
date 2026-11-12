@@ -2,8 +2,9 @@ using System.Collections.Generic;
 
 namespace Tower_Defense.Models.Entities;
 
-public interface Attacking
+public interface IAttacking
 {
     void Attack();
-    void ITarget(List<Entity> entities);
+    void TargetAmong(List<Entity> entities);
+    
 }

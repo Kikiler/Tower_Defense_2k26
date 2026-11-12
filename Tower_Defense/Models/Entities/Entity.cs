@@ -18,9 +18,6 @@ public abstract class Entity
         Goldvalue = goldvalue;
     }
     
-    
-
-    public abstract void TakeDamage(int damage);
 
 
 

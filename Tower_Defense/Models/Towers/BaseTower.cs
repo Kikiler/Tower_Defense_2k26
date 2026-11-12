@@ -16,13 +16,13 @@ public class BaseTower : Tower
 
     public override void Attack()
     {
-        if (_target is not null)
+        if (_target is not null && _target is IDamageable t)
         {
-            _target.TakeDamage(RawAttackDamage);
+            t.TakeDamage(RawAttackDamage);
         }
     }
 
-    public override void ITarget(List<Entity> entities)
+    public override void TargetAmong(List<Entity> entities)
     {
         if (_target is not null && IsInRange(_target))
         {
@@ -38,6 +38,7 @@ public class BaseTower : Tower
                 currentPotentialTarget = potentialTarget;
             }
         }
-        
+
+        _target = currentPotentialTarget;
     }
 }
