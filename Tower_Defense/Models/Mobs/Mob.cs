@@ -12,7 +12,7 @@ public abstract class Mob : Entity, IMovable, IDamageable, IAttacking
         
     }
 
-    public abstract void MoveTo(Position newPosition);
+    public abstract void Move();
 
     public abstract void TakeDamage(int damage);
 
