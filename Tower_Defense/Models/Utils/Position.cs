@@ -19,15 +19,11 @@ public class Position
 
     double Distance(Position otherPos)
     {
-        if (otherPos is null)
-            throw new NullReferenceException("the other position is null");
         return Math.Sqrt(Math.Pow(X - otherPos.X, 2) + Math.Pow(Y - otherPos.Y, 2));
     }
 
     public override bool Equals(object? obj)
     {
-        if(obj is null)
-            throw new NullReferenceException("the other obj is null");
         if (obj is Position pos)
             return pos.X == X && pos.Y == Y;
         return false;
