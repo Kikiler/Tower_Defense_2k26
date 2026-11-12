@@ -17,6 +17,6 @@ public abstract class AttackingEntity : Entity, Attacking
     public abstract void ITarget(List<Entity> entities);
     public abstract void Attack();
 
-    public bool IsInRange(Entity otherEntity) => otherEntity.Position.Distance(Position) < Range;
+    protected bool IsInRange(Entity otherEntity) => otherEntity.Position.Distance(Position) < Range;
 
 }
