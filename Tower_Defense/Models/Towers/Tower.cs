@@ -1,41 +1,26 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Tower_Defense.Models.Entities;
 using Tower_Defense.Models.Utils;
 
 namespace Tower_Defense.Models.Towers;
 
-public class Tower : Entity, Attacking
+public abstract class Tower : AttackingEntity
 {
-    public override Position Pos
+
+    public override int HpBar { get; set; } = 100;
+    public int RawAttackDamage { get; }
+
+    public Tower(Position pos, int value, int range,  int attackDamage) :
+    base(pos, value, range)
     {
-        get => new Position(field.X, field.Y);
-        set => field = new Position(value.X, value.Y);
-    }
-    
-    public TowerBehaviour Behaviour { get; set; }
-
-    private int _goldvalue;
-    public override int Goldvalue => _goldvalue;
-    public override int HpBar { get;}
-
-
-    public Tower(Position pos, int hpBar, int value, TowerBehaviour behavior)
-    {
-        _goldvalue = value;
-        Pos = new Position(pos.X, pos.Y);
-        if (0 < hpBar)
-            throw new Exception("hpbar must be greater than 0 at start");
-        HpBar = hpBar;
-        Behaviour = behavior;
+        RawAttackDamage = attackDamage;
     }
 
     public override void TakeDamage(int damage)
     {
-        _goldvalue -= damage;
+        HpBar -= damage;
     }
-
-    public void Attack(Entity otherEntity)
-    {
-        otherEntity.TakeDamage(Behaviour.RawDamage());
-    }
+    
 }
