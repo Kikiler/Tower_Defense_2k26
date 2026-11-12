@@ -17,7 +17,7 @@ public class Position
         Y = y;
     }
 
-    double Distance(Position otherPos)
+    public double Distance(Position otherPos)
     {
         return Math.Sqrt(Math.Pow(X - otherPos.X, 2) + Math.Pow(Y - otherPos.Y, 2));
     }
